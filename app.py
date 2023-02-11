@@ -42,7 +42,6 @@ def filltable():
     qt_col = int(result['colunas'])
     random_option = result['opt-rep']
     qt_lin = int(result['hideen-num'])
-    print(qt_col, random_option, qt_lin)
 
     read_table = CalcCode.generation_num(random_option, (qt_col-qt_col_exist), qt_lin)
     title_read = read_table[1]
@@ -79,11 +78,18 @@ def fillgen():
 def handleFileUpload():
     if 'photo' in request.files:
         photo = request.files['photo']
-        print('---------', photo)
+        #print('---------', photo)
         if photo.filename != '':
-            print('foi')
+            #print('foi')
             photo.save(os.path.join('static/media/', photo.filename))
     return redirect(url_for('list_doc'))
+
+
+@app.route("/download")
+def download():
+    CalcCode.gera_game()
+    return redirect(url_for('static', filename='media/JOGO_GERADO.xlsx'))
+
 
 
 if __name__ == '__main__':

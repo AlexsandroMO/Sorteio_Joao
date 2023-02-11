@@ -74,4 +74,24 @@ def generation_num(random_option, qt_col, qt_lin):
 
     read = [list_table, title_read[1::]]
 
+    '''
+    name_col = []
+    for a in range(1, len(list_table)+1):
+        name_col.append(a)
+    '''
+
+    #df = pd.DataFrame(data=list_table, columns=name_col)
+    df = pd.DataFrame(data=list_table)
+    df.to_excel('static/media/df_prov.xlsx', sheet_name='Jogos Gerados')
+
     return read
+
+def gera_game():
+
+    df_base = pd.read_excel('static/media/df_prov.xlsx')
+    df_base = df_base.drop(columns=['Unnamed: 0'])
+
+    df_base.to_excel('static/media/JOGO_GERADO.xlsx', sheet_name='Jogos Gerados')
+
+    return 'feito!'
+    #df_base = df_base.drop(columns=[0])
