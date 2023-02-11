@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="content-wrapper" style="min-height: 1302.12px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Lista de Colaboradores</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">DataTables</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+  
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Projetos em andamento</h3>
+              </div>
+              <!-- /.card-header -->
+              <input type ="hidden" name="id_proj" value="{{proj_id}}">
+              <div class="card-body">
+                <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row">
+                  <div class="col-sm-12 col-md-6">
+                </div><div class="col-sm-12 col-md-6"></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
+                  <thead>
+                  <tr role="row">
+                    <th class="sorting sorting_asc"></th>
+                    {% for cont in title_read %}
+                    <th class="sorting">DEZ_{{cont}}</th>
+                    {% endfor %}
+                  </tr>
+                  </thead>
+                  <tbody>
+                    {% for num in read %}
+                      <tr class="odd">
+                        <td>-</td>
+                        {% for cont in title_read %}
+                        <td>{{num[cont-1]}}</td>
+                        {% endfor %}
+                      </tr>
+                    {% endfor %}
+                </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row"><div class="col-sm-12 col-md-5">
+              <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Generated Games</div></div>
+              </ul></div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+
+        </div>
+
+              <div class="aling-back" id="back-i">
+                <a href="/"><i class="fas fa-angle-double-left fa-2x"></i></a>
+            </div>
+            
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+
+
+
+
+{% endblock content %}
