@@ -1,6 +1,7 @@
 import random
 import pandas as pd
-from random import sample
+import numpy as np
+#from random import sample
 
 #----------------------------------
 def number(qt_lin, random_option):
@@ -79,45 +80,37 @@ def generation_num_table(random_option, qt_col, qt_lin):
     return read
 
 
-def generation_num(random_option, qt_col, qt_lin):
-    
-    list_num = []
-    for cont in range(0, qt_lin):
-        list_num.append(0)
+def generation_num(qt_col, qt_lin):
 
-    df_base = pd.DataFrame(data=list_num, columns=[0])
-    df_base.to_excel('static/media/BASE_GAME.xlsx')
+    list_table = []
+    zeros = np.zeros((qt_lin,), dtype=int)
+    for a in zeros:
+        list_table.append([a])
 
-    df_base = pd.read_excel('static/media/BASE_GAME.xlsx')
-    df_base = df_base.drop(columns=['Unnamed: 0'])
+    cont = 0
+    while cont != qt_col +1:
+        for a in range(0, len(list_table)):
+            test = True
+            while test == True:
+                x = int(round(random.random()*100,0))
+                if x in list_table[a]:
+                    test = True
+                else:
+                    list_table[a].append(x)
+                    test = False
+        cont += 1
+        print(cont)
 
-    for a in range(0, qt_col):
-        game_x = number(qt_lin, random_option)
-        #-----
-        for a in range(0, len(game_x)):
-            for b in range(0, len(df_base.columns)):
-                y = df_base[df_base.index == a][b][a]
-                if y == game_x[a]:
-                    x = int(round(random.random()*101,0))
-                    game_x[a] = x
-        #-----
-        df_base[len(df_base.columns)] = pd.DataFrame(data=game_x)
-
-    df_base = df_base.replace(100, 0)
-
-    list_table =[]
-    for a in range(0, len(df_base)):
-        list_read = []
-        for b in range(1, len(df_base.columns)):
-            list_read.append(df_base[b][a])
-        list_table.append(list_read)
-
-    title_read = df_base.columns
-
-    read = [list_table, title_read[1::]]
+    for a in range(0, len(list_table)):
+        list_table[a].remove(0)
 
     df = pd.DataFrame(data=list_table)
     df.to_excel('static/media/df_prov.xlsx', sheet_name='Jogos Gerados')
+    df = pd.read_excel('static/media/df_prov.xlsx')
+    df = df.drop(columns=['Unnamed: 0'])
+
+    title_read = df.columns
+    read = [list_table, title_read[1::]]
 
     return read
 

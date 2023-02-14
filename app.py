@@ -61,12 +61,10 @@ def fillgen():
     result = request.form
     qt_col = int(result['colunas'])
     qt_lin = int(result['linha'])
-    random_option = result['opt-rep']
-    read_table = CalcCode.generation_num(random_option, qt_col, qt_lin)
+    #random_option = result['opt-rep']
+    read_table = CalcCode.generation_num(qt_col, qt_lin)
     title_read = read_table[1]
     read = read_table[0]
-
-    print(read)
 
   return render_template('list-read-num.html', read=read, title_read=title_read)
 
