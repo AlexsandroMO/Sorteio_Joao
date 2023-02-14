@@ -37,13 +37,12 @@ def list_doc():
 def filltable():
   if request.method == 'POST':
     result = request.form
-    print(result)
     qt_col_exist = int(result['colunas_exist'])
     qt_col = int(result['colunas'])
     random_option = result['opt-rep']
     qt_lin = int(result['hideen-num'])
 
-    read_table = CalcCode.generation_num(random_option, (qt_col-qt_col_exist), qt_lin)
+    read_table = CalcCode.generation_num_table(random_option, (qt_col-qt_col_exist), qt_lin)
     title_read = read_table[1]
     read = read_table[0]
 
@@ -52,26 +51,24 @@ def filltable():
 #------------------------------
 @app.route('/list_gen')
 def list_gen():
-  read_table = CalcCode.read_df()
-  title_read = read_table[1]
-  read = read_table[0]
-
   list_cont = np.arange(1, 100)
-  
-  return render_template('list-gen.html', read=read, list_cont=list_cont, title_read=title_read)
+  return render_template('list-gen.html', list_cont=list_cont)
 
 
 @app.route('/fillgen', methods=['POST'])
 def fillgen():
   if request.method == 'POST':
     result = request.form
-    print(result)
-    consultcol = result['colunas']
-    consultlin = result['linha']
-    choice = result['num-rep']
-    print(consultcol, consultlin, choice)
+    qt_col = int(result['colunas'])
+    qt_lin = int(result['linha'])
+    random_option = result['opt-rep']
+    read_table = CalcCode.generation_num(random_option, qt_col, qt_lin)
+    title_read = read_table[1]
+    read = read_table[0]
 
-  return render_template('list-read.html')
+    print(read)
+
+  return render_template('list-read-num.html', read=read, title_read=title_read)
 
 
 @app.route('/handleUpload', methods=['POST'])
@@ -109,3 +106,4 @@ def fileform():
 
   return render_template('file-form.html')
 '''
+

@@ -41,9 +41,8 @@ def read_df():
     return read
 
 
-
 #---------------------------------- ler tabela gerada
-def generation_num(random_option, qt_col, qt_lin):
+def generation_num_table(random_option, qt_col, qt_lin):
     
     df_base = pd.read_excel('static/media/caraga_jogo.xlsx')
     df_base = df_base.drop(columns=['Unnamed: 0'])
@@ -74,17 +73,54 @@ def generation_num(random_option, qt_col, qt_lin):
 
     read = [list_table, title_read[1::]]
 
-    '''
-    name_col = []
-    for a in range(1, len(list_table)+1):
-        name_col.append(a)
-    '''
-
-    #df = pd.DataFrame(data=list_table, columns=name_col)
     df = pd.DataFrame(data=list_table)
     df.to_excel('static/media/df_prov.xlsx', sheet_name='Jogos Gerados')
 
     return read
+
+
+def generation_num(random_option, qt_col, qt_lin):
+    
+    list_num = []
+    for cont in range(0, qt_lin):
+        list_num.append(0)
+
+    df_base = pd.DataFrame(data=list_num, columns=[0])
+    df_base.to_excel('static/media/BASE_GAME.xlsx')
+
+    df_base = pd.read_excel('static/media/BASE_GAME.xlsx')
+    df_base = df_base.drop(columns=['Unnamed: 0'])
+
+    for a in range(0, qt_col):
+        game_x = number(qt_lin, random_option)
+        #-----
+        for a in range(0, len(game_x)):
+            for b in range(0, len(df_base.columns)):
+                y = df_base[df_base.index == a][b][a]
+                if y == game_x[a]:
+                    x = int(round(random.random()*101,0))
+                    game_x[a] = x
+        #-----
+        df_base[len(df_base.columns)] = pd.DataFrame(data=game_x)
+
+    df_base = df_base.replace(100, 0)
+
+    list_table =[]
+    for a in range(0, len(df_base)):
+        list_read = []
+        for b in range(1, len(df_base.columns)):
+            list_read.append(df_base[b][a])
+        list_table.append(list_read)
+
+    title_read = df_base.columns
+
+    read = [list_table, title_read[1::]]
+
+    df = pd.DataFrame(data=list_table)
+    df.to_excel('static/media/df_prov.xlsx', sheet_name='Jogos Gerados')
+
+    return read
+
 
 def gera_game():
 
