@@ -37,16 +37,17 @@ def list_doc():
 def filltable():
   if request.method == 'POST':
     result = request.form
-    qt_col_exist = int(result['colunas_exist'])
+    #qt_col_exist = int(result['colunas_exist'])
     qt_col = int(result['colunas'])
-    random_option = result['opt-rep']
-    qt_lin = int(result['hideen-num'])
+    #random_option = result['opt-rep']
+    #qt_lin = int(result['hideen-num'])
 
-    read_table = CalcCode.generation_num_table(random_option, (qt_col-qt_col_exist), qt_lin)
+    read_table = CalcCode.generation_num_table(qt_col + 1)
     title_read = read_table[1]
     read = read_table[0]
 
-  return render_template('list-read.html', qt_lin=qt_lin, read=read, title_read=title_read)
+  #return render_template('list-read.html', qt_lin=qt_lin, read=read, title_read=title_read)
+  return render_template('list-read.html', read=read, title_read=title_read)
 
 #------------------------------
 @app.route('/list_gen')
