@@ -60,14 +60,36 @@ def list_gen():
 def fillgen():
   if request.method == 'POST':
     result = request.form
-    qt_col = int(result['colunas'])
+    #qt_col = int(result['colunas'])
     qt_lin = int(result['linha'])
-    #random_option = result['opt-rep']
-    read_table = CalcCode.generation_num(qt_col, qt_lin)
+    #qt_dez = int(result['dezena'])
+    num_dez = result['number-dez']
+
+    dez = num_dez.split(';')
+
+    read_table = CalcCode.generation_num_col(qt_lin, dez)
     title_read = read_table[1]
     read = read_table[0]
+    print(read)
+  return render_template('list-read-num-col.html', read=read, title_read=title_read)
 
-  return render_template('list-read-num.html', read=read, title_read=title_read)
+
+@app.route('/fillgen_num', methods=['POST'])
+def fillgen_num():
+  if request.method == 'POST':
+    result = request.form
+    #qt_col = int(result['colunas'])
+    #qt_lin = int(result['linha'])
+    #qt_dez = int(result['dezena'])
+    num_dez = result['number-dez']
+
+    dez = num_dez.split(';')
+
+    read_table = CalcCode.generation_num_colx(dez)
+    title_read = read_table[1]
+    read = read_table[0]
+    print(read)
+  return render_template('list-read-num-col.html', read=read, title_read=title_read)
 
 
 @app.route('/handleUpload', methods=['POST'])

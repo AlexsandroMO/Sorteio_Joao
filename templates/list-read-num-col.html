@@ -51,7 +51,43 @@
             </div>
         </div>
 
-        <div class="aling-div">
+        <div class="alinha-cols">
+          <div class="aling-div">
+            <ul class="list-group">
+              <form action="/fillgen_num" method="post" enctype="multipart/form-data">
+                <!-- <label for="dezena">Quantidade de Dezenas </label><br>
+                <select id="dezena" name="dezena" class="">
+                  <option value="numero-dezena">-</option>
+                  {% for read in list_cont %}
+                    <option value="{{read}}">{{read}}</option>
+                  {% endfor %}
+                </select> -->
+                <label for="lname">Escolha suas Dezenas</label>
+                <input type="text" id="number-dez" name="number-dez" placeholder="ex: 10;20;30">
+                <br>
+                <br>
+                <p>Atenção! A quantidade de colunas não pode ultrapassar a quantidade de Dezena</p>
+                <!-- <label for="opt-rep">Deseja Números não Repetidos? </label><br>
+                <select id="opt-rep" name="opt-rep">
+                  <option value="test-opt-rep">-</option>
+                    <option value="sim">Sim</option>
+                    <option value="indif">Indiferente</option>
+                </select> -->
+            <br>
+                <div>
+                  <input type="submit" value="Gerar Jogos" id="alinha-button">
+                </div>
+
+              </form>
+            <ul>
+          </div>
+        </div>
+
+        </div>
+
+        
+
+    <div class="aling-div">
 	  <ul class="list-group">
 		<li class="list-group-item"><a href="/download" class="link_thumb">
 		  <table class="table table-striped">
