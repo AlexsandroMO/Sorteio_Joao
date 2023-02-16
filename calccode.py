@@ -190,7 +190,7 @@ def generation_num_colx(dez):
                 test = True
             else:
                 list_table[a].append(x)
-                test = False
+                test = False   
 
     print('\n\n ---------- ')
     print(list_table)
