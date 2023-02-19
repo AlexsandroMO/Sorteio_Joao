@@ -2,6 +2,24 @@ a{
     text-decoration: none;
 }
 
+.alin1{
+    float: right;
+    position: relative;
+    right: 40px;
+    padding-left: 20px;
+}
+.alin2{
+    float: right;
+    position: relative;
+    top: 5px;
+    right: 40px;
+    padding-left: 20px;
+}
+
+.td-alin{
+    align-items: center;
+    text-align: center;
+}
 
 .div-hiddem{
     display: none;

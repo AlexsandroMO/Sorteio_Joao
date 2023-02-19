@@ -152,8 +152,8 @@ def generation_num_col(qt_lin, dez):
         list_table[a].remove(0)
 
     df = pd.DataFrame(data=list_table)
-    df.to_excel('static/media/df_prov_test.xlsx', sheet_name='Jogos Gerados')
-    df = pd.read_excel('static/media/df_prov_test.xlsx')
+    df.to_excel('static/media/df_prov.xlsx', sheet_name='Jogos Gerados')
+    df = pd.read_excel('static/media/df_prov.xlsx')
     df = df.drop(columns=['Unnamed: 0'])
 
     title_read = df.columns
@@ -164,7 +164,7 @@ def generation_num_col(qt_lin, dez):
 
 def generation_num_colx(dez):
 
-    df_prov = pd.read_excel('static/media/df_prov_test.xlsx')
+    df_prov = pd.read_excel('static/media/df_prov.xlsx')
     df_prov = df_prov.drop(columns=['Unnamed: 0'])
     
     print('\n\n')
@@ -197,8 +197,8 @@ def generation_num_colx(dez):
     print('\n\n')
 
     df = pd.DataFrame(data=list_table)
-    df.to_excel('static/media/df_prov_test.xlsx')
-    df = pd.read_excel('static/media/df_prov_test.xlsx')
+    df.to_excel('static/media/df_prov.xlsx')
+    df = pd.read_excel('static/media/df_prov.xlsx')
     df = df.drop(columns=['Unnamed: 0'])
 
     title_read = df.columns

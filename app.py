@@ -53,43 +53,75 @@ def filltable():
 @app.route('/list_gen')
 def list_gen():
   list_cont = np.arange(1, 100)
-  return render_template('list-gen.html', list_cont=list_cont)
+
+  table_listnum = []
+  baseA, baseB = 1, 11
+  for cont in range(0,10):
+    table_listnum.append(list(np.arange(baseA,baseB)))
+    baseA, baseB  = baseA + 10, baseB + 10
+
+  return render_template('list-gen.html', list_cont=list_cont, table_listnum=table_listnum)
 
 
 @app.route('/fillgen', methods=['POST'])
 def fillgen():
   if request.method == 'POST':
     result = request.form
-    #qt_col = int(result['colunas'])
+
+    dez = []
+    for a in result:
+      if a != 'linha' and a != 'All':
+        dez.append(a)
+
+    table_listnum = []
+    baseA, baseB = 1, 11
+    for cont in range(0,10):
+      table_listnum.append(list(np.arange(baseA,baseB)))
+      baseA, baseB  = baseA + 10, baseB + 10
+
     qt_lin = int(result['linha'])
-    #qt_dez = int(result['dezena'])
-    num_dez = result['number-dez']
-
-    dez = num_dez.split(';')
-
+    # all_num = result['All']
+    # dez_x = []
+    # if all_num == 'All':
+    #   for read in table_listnum:
+    #     for a in read:
+    #       dez_x.append(a)
+    #   read_table = CalcCode.generation_num_col(qt_lin, dez_x)
+    
     read_table = CalcCode.generation_num_col(qt_lin, dez)
     title_read = read_table[1]
     read = read_table[0]
-    print(read)
-  return render_template('list-read-num-col.html', read=read, title_read=title_read)
+    
+  return render_template('list-read-num-col.html', read=read, title_read=title_read, table_listnum=table_listnum)
 
 
 @app.route('/fillgen_num', methods=['POST'])
 def fillgen_num():
   if request.method == 'POST':
     result = request.form
+
+    table_listnum = []
+
+    baseA, baseB = 1, 11
+    for cont in range(0,10):
+      table_listnum.append(list(np.arange(baseA,baseB)))
+      baseA, baseB  = baseA + 10, baseB + 10
+
+    dez = []
+    for a in result:
+      if a != 'linha' and a != 'All':
+        dez.append(a)
+
     #qt_col = int(result['colunas'])
     #qt_lin = int(result['linha'])
     #qt_dez = int(result['dezena'])
-    num_dez = result['number-dez']
-
-    dez = num_dez.split(';')
+    #dez = num_dez.split(';')
 
     read_table = CalcCode.generation_num_colx(dez)
     title_read = read_table[1]
     read = read_table[0]
-    print(read)
-  return render_template('list-read-num-col.html', read=read, title_read=title_read)
+
+  return render_template('list-read-num-col.html', read=read, title_read=title_read, table_listnum=table_listnum)
 
 
 @app.route('/handleUpload', methods=['POST'])
