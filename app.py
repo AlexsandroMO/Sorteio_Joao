@@ -39,6 +39,7 @@ def filltable():
     result = request.form
     qt_col_exist = int(result['colunas_exist'])
     qt_col = int(result['colunas'])
+    
     read_table = CalcCode.generation_num_table((qt_col + 1)-qt_col_exist)
     title_read = read_table[1]
     read = read_table[0]

@@ -2,6 +2,22 @@ a{
     text-decoration: none;
 }
 
+.content-box{
+    padding-left: 30%;
+    padding-bottom: 10px;
+    align-items: center;
+}
+
+.aling-div{
+    padding: 30px;
+    width: 100%;
+}
+
+.aling-div-base{
+    margin: 20px;
+    padding: 20px;
+}
+
 .alin1{
     float: right;
     position: relative;
@@ -34,19 +50,9 @@ a{
     margin-right: 20px;
 }
 
-.content-box{
-    padding-left: 30%;
-    padding-bottom: 10px;
-}
-
 .alinha-cols{
     padding-left: 30px;
     padding-bottom: 30px;
-}
-
-.aling-div{
-    padding-top: 20px;
-    width: 100%;
 }
 
 .aling-back{
