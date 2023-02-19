@@ -75,24 +75,46 @@ def fillgen():
       baseA, baseB  = baseA + 10, baseB + 10
 
     dez = []
+    test = ''
     for a in result:
       if 'all' in a:
-        for read in table_listnum:
-          for a in read:
-            dez.append(a)
+        test = 'all'
+        break
+
+      elif 'mega' in a:
+        test = 'mega'
+        break
+
+      elif 'loto' in a:
+        test = 'loto'
+        break
+
       else:
-        if a != 'linha' and a != 'all':
+        test = 'someone'
+        break
+
+    if test == 'all':
+      for read in table_listnum:
+        for a in read:
+          dez.append(a)
+
+    if test == 'mega':
+      table_listnum2 = list(np.arange(1,61))
+      for a in table_listnum2:
+        dez.append(a)
+
+    if test == 'loto':
+      table_listnum2 = list(np.arange(1,26))
+      for a in table_listnum2:
+        dez.append(a)
+
+    if test == 'someone':
+      for a in result:
+        if a != 'linha' and a != 'all' and a != 'mega' and a != 'loto':
           dez.append(a)
       
     qt_lin = int(result['linha'])
  
-    # dez_x = []
-    # if all_num == 'All':
-    #   for read in table_listnum:
-    #     for a in read:
-    #       dez_x.append(a)
-    #   read_table = CalcCode.generation_num_col(qt_lin, dez_x)
-    
     read_table = CalcCode.generation_num_col(qt_lin, dez)
     title_read = read_table[1]
     read = read_table[0]
@@ -112,19 +134,43 @@ def fillgen_num():
       baseA, baseB  = baseA + 10, baseB + 10
 
     dez = []
+    test = ''
     for a in result:
       if 'all' in a:
-        for read in table_listnum:
-          for a in read:
-            dez.append(a)
+        test = 'all'
+        break
+
+      elif 'mega' in a:
+        test = 'mega'
+        break
+
+      elif 'loto' in a:
+        test = 'loto'
+        break
+
       else:
-        if a != 'linha' and a != 'all':
+        test = 'someone'
+        break
+
+    if test == 'all':
+      for read in table_listnum:
+        for a in read:
           dez.append(a)
 
-    #qt_col = int(result['colunas'])
-    #qt_lin = int(result['linha'])
-    #qt_dez = int(result['dezena'])
-    #dez = num_dez.split(';')
+    if test == 'mega':
+      table_listnum2 = list(np.arange(1,61))
+      for a in table_listnum2:
+        dez.append(a)
+
+    if test == 'loto':
+      table_listnum2 = list(np.arange(1,26))
+      for a in table_listnum2:
+        dez.append(a)
+
+    if test == 'someone':
+      for a in result:
+        if a != 'linha' and a != 'all' and a != 'mega' and a != 'loto':
+          dez.append(a)
 
     read_table = CalcCode.generation_num_colx(dez)
     title_read = read_table[1]
@@ -137,9 +183,7 @@ def fillgen_num():
 def handleFileUpload():
     if 'photo' in request.files:
         photo = request.files['photo']
-        #print('---------', photo)
         if photo.filename != '':
-            #print('foi')
             photo.save(os.path.join('static/media/', photo.filename))
     return redirect(url_for('list_doc'))
 
