@@ -68,19 +68,24 @@ def fillgen():
   if request.method == 'POST':
     result = request.form
 
-    dez = []
-    for a in result:
-      if a != 'linha' and a != 'All':
-        dez.append(a)
-
     table_listnum = []
     baseA, baseB = 1, 11
     for cont in range(0,10):
       table_listnum.append(list(np.arange(baseA,baseB)))
       baseA, baseB  = baseA + 10, baseB + 10
 
+    dez = []
+    for a in result:
+      if 'all' in a:
+        for read in table_listnum:
+          for a in read:
+            dez.append(a)
+      else:
+        if a != 'linha' and a != 'all':
+          dez.append(a)
+      
     qt_lin = int(result['linha'])
-    # all_num = result['All']
+ 
     # dez_x = []
     # if all_num == 'All':
     #   for read in table_listnum:
@@ -101,7 +106,6 @@ def fillgen_num():
     result = request.form
 
     table_listnum = []
-
     baseA, baseB = 1, 11
     for cont in range(0,10):
       table_listnum.append(list(np.arange(baseA,baseB)))
@@ -109,8 +113,13 @@ def fillgen_num():
 
     dez = []
     for a in result:
-      if a != 'linha' and a != 'All':
-        dez.append(a)
+      if 'all' in a:
+        for read in table_listnum:
+          for a in read:
+            dez.append(a)
+      else:
+        if a != 'linha' and a != 'all':
+          dez.append(a)
 
     #qt_col = int(result['colunas'])
     #qt_lin = int(result['linha'])
@@ -143,7 +152,6 @@ def download():
 
 
 if __name__ == '__main__':
-  #app.run(host='0.0.0.0', port=8080, debug=True)
   app.run(host='127.0.0.1', port=5000, debug=True)
 #app.run(host='0.0.0.0', port=8080)
 

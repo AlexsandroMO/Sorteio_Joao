@@ -56,8 +56,12 @@
             <ul class="list-group">
               <form action="/fillgen_num" method="post" enctype="multipart/form-data">
                 <label for="lname"><strong>Escolha suas Dezenas</strong></label>
-                <label for="lname" class="alin1"> Escolher Todas as Dezenas</label>
-                <input class="alin2" type="checkbox" name="All" value="All">
+                <div class="form-group">
+                  <div class="custom-control custom-switch">
+                  <input type="checkbox" class="custom-control-input" id="customSwitch1" name="all">
+                  <label class="custom-control-label" for="customSwitch1">Todas Dezanas?</label>
+                  </div>
+                </div>
 <div>
     <div class="row">
       <div class="col-sm-12">
