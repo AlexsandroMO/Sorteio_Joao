@@ -56,25 +56,10 @@
             <ul class="list-group">
               <form action="/fillgen_num" method="post" enctype="multipart/form-data">
                 <label for="lname"><strong>Escolha suas Dezenas</strong></label>
-                <div class="form-group">
-                  <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="customSwitch1" name="all">
-                    <label class="custom-control-label" for="customSwitch1">Todas Dezanas</label>
-                  </div>
-                  <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="customSwitch2" name="mega">
-                    <label class="custom-control-label" for="customSwitch2">MegaSena</label>
-                  </div>
-                  <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="customSwitch3" name="loto">
-                    <label class="custom-control-label" for="customSwitch3">LotoFácil</label>
-                  </div>
-                </div>
-              </div>
 <div>
     <div class="row">
-      <div class="col-sm-12">
-      <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
+      <div class="col-sm-6">
+      <table id="example1" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
        
       <tbody>
         {% for cont in table_listnum %}
@@ -96,7 +81,22 @@
   </div>
 </div>
 
-<br><br>
+<div class="form-group">
+  <div class="custom-control custom-switch">
+    <input type="checkbox" class="custom-control-input" id="customSwitch1" name="all">
+    <label class="custom-control-label" for="customSwitch1">Todas Dezanas</label>
+  </div>
+  <div class="custom-control custom-switch">
+    <input type="checkbox" class="custom-control-input" id="customSwitch2" name="mega">
+    <label class="custom-control-label" for="customSwitch2">MegaSena</label>
+  </div>
+  <div class="custom-control custom-switch">
+    <input type="checkbox" class="custom-control-input" id="customSwitch3" name="loto">
+    <label class="custom-control-label" for="customSwitch3">LotoFácil</label>
+  </div>
+</div>
+</div>
+
                 <div>
                   <input type="submit" value="Gerar Jogos" id="alinha-button">
                 </div>
