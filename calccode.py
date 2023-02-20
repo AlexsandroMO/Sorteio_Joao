@@ -1,7 +1,6 @@
 import random
 import pandas as pd
 import numpy as np
-#from random import sample
 
 #----------------------------------
 def number(qt_lin, random_option):
@@ -26,7 +25,6 @@ def number(qt_lin, random_option):
 def read_df():
     df_base = pd.read_excel('static/media/carga_jogo.xlsx')
     df_base = df_base.drop(columns=['Unnamed: 0'])
-    #df_base = df_base.drop(columns=[0])
 
     title_read = df_base.columns
 
@@ -129,7 +127,6 @@ def gera_game():
     df_base.to_excel('static/media/JOGO_GERADO.xlsx', sheet_name='Jogos Gerados')
 
     return 'feito!'
-    #df_base = df_base.drop(columns=[0])
 
 def generation_num_col(qt_lin, dez):
 
@@ -166,10 +163,6 @@ def generation_num_colx(dez):
 
     df_prov = pd.read_excel('static/media/df_prov.xlsx')
     df_prov = df_prov.drop(columns=['Unnamed: 0'])
-    
-    print('\n\n')
-    print(df_prov)
-    print('\n\n')
 
     list_table = []
     for a in range(0, len(df_prov)):
@@ -177,10 +170,6 @@ def generation_num_colx(dez):
         for b in range(0, len(df_prov.columns)):
             list_read.append(df_prov[b][a])
         list_table.append(list_read)
-
-    print('\n\n')
-    print(list_table)
-    print('\n\n')
 
     for a in range(0, len(list_table)):
         test = True
@@ -191,10 +180,6 @@ def generation_num_colx(dez):
             else:
                 list_table[a].append(x)
                 test = False   
-
-    print('\n\n ---------- ')
-    print(list_table)
-    print('\n\n')
 
     df = pd.DataFrame(data=list_table)
     df.to_excel('static/media/df_prov.xlsx')
