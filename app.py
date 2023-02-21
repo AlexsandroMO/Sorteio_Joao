@@ -28,10 +28,9 @@ def list_doc():
 
   qt_lin = len(read_table[0])
   qt_lin_ex = len(title_read)
-  list_cont = np.arange(1, 100)
+  list_cont = np.arange(1, 101)
   
   return render_template('list-doc.html', qt_lin=qt_lin, read=read, list_cont=list_cont, title_read=title_read, qt_lin_ex=qt_lin_ex)
-
 
 @app.route('/filltable', methods=['POST'])
 def filltable():
@@ -49,7 +48,7 @@ def filltable():
 #------------------------------
 @app.route('/list_gen')
 def list_gen():
-  list_cont = np.arange(1, 100)
+  list_cont = np.arange(1, 101)
 
   table_listnum = []
   baseA, baseB = 1, 11
@@ -58,7 +57,6 @@ def list_gen():
     baseA, baseB  = baseA + 10, baseB + 10
 
   return render_template('list-gen.html', list_cont=list_cont, table_listnum=table_listnum)
-
 
 @app.route('/fillgen', methods=['POST'])
 def fillgen():
@@ -118,7 +116,6 @@ def fillgen():
     
   return render_template('list-read-num-col.html', read=read, title_read=title_read, table_listnum=table_listnum)
 
-
 @app.route('/fillgen_num', methods=['POST'])
 def fillgen_num():
   if request.method == 'POST':
@@ -175,7 +172,6 @@ def fillgen_num():
 
   return render_template('list-read-num-col.html', read=read, title_read=title_read, table_listnum=table_listnum)
 
-
 @app.route('/handleUpload', methods=['POST'])
 def handleFileUpload():
     if 'photo' in request.files:
@@ -183,7 +179,6 @@ def handleFileUpload():
         if photo.filename != '':
             photo.save(os.path.join('static/media/', photo.filename))
     return redirect(url_for('list_doc'))
-
 
 @app.route("/download")
 def download():
@@ -193,6 +188,7 @@ def download():
 @app.route('/construction')
 def construction():
   return render_template('construction.html')
+
 
 if __name__ == '__main__':
   app.run(host='127.0.0.1', port=5000, debug=True)
