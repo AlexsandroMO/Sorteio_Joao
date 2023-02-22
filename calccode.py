@@ -156,7 +156,6 @@ def generation_num_colx(dez, qt_col_del, qt_col):
     df_prov = df_prov.drop(columns=['Unnamed: 0'])
 
     if qt_col_del == 'S':
-        print('>>> entrou aqui >>>>>> ',len(df_prov.columns))
         df_prov.drop(columns=[len(df_prov.columns)-1], inplace=True)
         df_prov.to_excel('static/media/df_prov.xlsx')
         df = pd.read_excel('static/media/df_prov.xlsx')
@@ -193,9 +192,9 @@ def generation_num_colx(dez, qt_col_del, qt_col):
                     else:
                         list_table[a].append(x)
                         test = False   
-        print('entrou auqi tb')
 
         df = pd.DataFrame(data=list_table)
+        df = df.replace(100,0)
         df.to_excel('static/media/df_prov.xlsx')
         df = pd.read_excel('static/media/df_prov.xlsx')
         df = df.drop(columns=['Unnamed: 0'])
