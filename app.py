@@ -11,39 +11,41 @@ app = Flask(__name__)
 def home():
   return render_template('home.html')
 
+
 @app.route('/game_station')
 def game_station():
   return render_template('game-station.html')
 
-@app.route('/fileform')
-def fileform():
-    return render_template('fileform.html')
+
+# @app.route('/fileform')
+# def fileform():
+#     return render_template('fileform.html')
 
 #------------------------------
-@app.route('/list_doc')
-def list_doc():
-  read_table = CalcCode.read_df()
-  title_read = read_table[1]
-  read = read_table[0]
+# @app.route('/list_doc')
+# def list_doc():
+#   read_table = CalcCode.read_df()
+#   title_read = read_table[1]
+#   read = read_table[0]
 
-  qt_lin = len(read_table[0])
-  qt_lin_ex = len(title_read)
-  list_cont = np.arange(1, 101)
+#   qt_lin = len(read_table[0])
+#   qt_lin_ex = len(title_read)
+#   list_cont = np.arange(1, 101)
   
-  return render_template('list-doc.html', qt_lin=qt_lin, read=read, list_cont=list_cont, title_read=title_read, qt_lin_ex=qt_lin_ex)
+#   return render_template('list-doc.html', qt_lin=qt_lin, read=read, list_cont=list_cont, title_read=title_read, qt_lin_ex=qt_lin_ex)
 
-@app.route('/filltable', methods=['POST'])
-def filltable():
-  if request.method == 'POST':
-    result = request.form
-    qt_col_exist = int(result['colunas_exist'])
-    qt_col = int(result['colunas'])
+# @app.route('/filltable', methods=['POST'])
+# def filltable():
+#   if request.method == 'POST':
+#     result = request.form
+#     qt_col_exist = int(result['colunas_exist'])
+#     qt_col = int(result['colunas'])
     
-    read_table = CalcCode.generation_num_table((qt_col + 1)-qt_col_exist)
-    title_read = read_table[1]
-    read = read_table[0]
+#     read_table = CalcCode.generation_num_table((qt_col + 1)-qt_col_exist)
+#     title_read = read_table[1]
+#     read = read_table[0]
 
-  return render_template('list-read.html', read=read, title_read=title_read)
+#   return render_template('list-read.html', read=read, title_read=title_read)
 
 #------------------------------
 @app.route('/list_gen')
@@ -57,6 +59,7 @@ def list_gen():
     baseA, baseB  = baseA + 10, baseB + 10
 
   return render_template('list-gen.html', list_cont=list_cont, table_listnum=table_listnum)
+
 
 @app.route('/fillgen', methods=['POST'])
 def fillgen():
@@ -109,12 +112,15 @@ def fillgen():
           dez.append(a)
       
     qt_lin = int(result['linha'])
+
+    list_cont = np.arange(1, 101)
  
     read_table = CalcCode.generation_num_col(qt_lin, dez)
     title_read = read_table[1]
     read = read_table[0]
     
-  return render_template('list-read-num-col.html', read=read, title_read=title_read, table_listnum=table_listnum)
+  return render_template('list-read-num-col.html', read=read, title_read=title_read, table_listnum=table_listnum, list_cont=list_cont)
+
 
 @app.route('/fillgen_num', methods=['POST'])
 def fillgen_num():
@@ -163,14 +169,20 @@ def fillgen_num():
 
     if test == 'someone':
       for a in result:
-        if a != 'linha' and a != 'all' and a != 'mega' and a != 'loto':
+        if a != 'linha' and a != 'all' and a != 'mega' and a != 'loto' and a != 'coluna' and a != 'coluna-del':
           dez.append(a)
 
-    read_table = CalcCode.generation_num_colx(dez)
+    qt_col = int(result['coluna'])
+    qt_col_del = result['coluna-del']
+    
+    list_cont = np.arange(1, 101)
+
+    read_table = CalcCode.generation_num_colx(dez, qt_col_del, qt_col)
     title_read = read_table[1]
     read = read_table[0]
 
-  return render_template('list-read-num-col.html', read=read, title_read=title_read, table_listnum=table_listnum)
+  return render_template('list-read-num-col.html', read=read, title_read=title_read, table_listnum=table_listnum, list_cont=list_cont)
+
 
 @app.route('/handleUpload', methods=['POST'])
 def handleFileUpload():
@@ -180,14 +192,17 @@ def handleFileUpload():
             photo.save(os.path.join('static/media/', photo.filename))
     return redirect(url_for('list_doc'))
 
+
 @app.route("/download")
 def download():
     CalcCode.gera_game()
     return redirect(url_for('static', filename='media/JOGO_GERADO.xlsx'))
 
+
 @app.route('/construction')
 def construction():
   return render_template('construction.html')
+
 
 
 if __name__ == '__main__':
