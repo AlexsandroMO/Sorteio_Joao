@@ -50,6 +50,7 @@ def game_station():
 #------------------------------
 @app.route('/list_gen')
 def list_gen():
+
   list_cont = np.arange(1, 101)
 
   table_listnum = []
@@ -65,6 +66,8 @@ def list_gen():
 def fillgen():
   if request.method == 'POST':
     result = request.form
+
+    print(result)
 
     table_listnum = []
     baseA, baseB = 1, 11
@@ -111,7 +114,8 @@ def fillgen():
         if a != 'linha' and a != 'all' and a != 'mega' and a != 'loto':
           dez.append(a)
       
-    qt_lin = int(result['linha'])
+    #qt_lin = int(result['linha'])
+    qt_lin = int(result['numero-linha'])
 
     list_cont = np.arange(1, 101)
  
