@@ -188,6 +188,159 @@ def fillgen_num():
   return render_template('list-read-num-col.html', read=read, title_read=title_read, table_listnum=table_listnum, list_cont=list_cont)
 
 
+#-----
+
+@app.route('/list_gen_change')
+def list_gen_change():
+
+  list_cont = np.arange(1, 101)
+
+  table_listnum = []
+  baseA, baseB = 1, 11
+  for cont in range(0,10):
+    table_listnum.append(list(np.arange(baseA,baseB)))
+    baseA, baseB  = baseA + 10, baseB + 10
+
+  return render_template('list-gen-change.html', list_cont=list_cont, table_listnum=table_listnum)
+
+
+
+@app.route('/fillgen_change', methods=['POST'])
+def fillgen_change():
+  if request.method == 'POST':
+    result = request.form
+
+    table_listnum = []
+    baseA, baseB = 1, 11
+    for cont in range(0,10):
+      table_listnum.append(list(np.arange(baseA,baseB)))
+      baseA, baseB  = baseA + 10, baseB + 10
+
+    dez1 = []
+    test = ''
+    for a in result:
+      if 'all' in a:
+        test = 'all'
+        break
+
+      elif 'mega' in a:
+        test = 'mega'
+        break
+
+      elif 'loto' in a:
+        test = 'loto'
+        break
+
+      else:
+        test = 'someone'
+        break
+
+    if test == 'all':
+      for read in table_listnum:
+        for a in read:
+          dez1.append(a)
+
+    if test == 'mega':
+      table_listnum2 = list(np.arange(1,61))
+      for a in table_listnum2:
+        dez1.append(a)
+
+    if test == 'loto':
+      table_listnum2 = list(np.arange(1,26))
+      for a in table_listnum2:
+        dez1.append(a)
+
+    if test == 'someone':
+      for a in result:
+        if a != 'linha' and a != 'all' and a != 'mega' and a != 'loto':
+          dez1.append(a)
+      
+    #----
+    qt_lin = int(result['numero-linha'])
+    dez_read = result['dez2']
+
+    dez2 = dez_read.split(';')
+
+    print('>>>>>>>>>>>>>>> ',dez2)
+    extra_dez = len(dez2)
+    #----
+
+    list_cont = np.arange(1, 101)
+ 
+    read_table = CalcCode.generation_change_dez(qt_lin, dez1, dez2, extra_dez)
+    title_read = read_table[1]
+    read = read_table[0]
+    
+  return render_template('list-read-change-dez.html', read=read, title_read=title_read, table_listnum=table_listnum, list_cont=list_cont)
+
+
+@app.route('/fillgen_change_num', methods=['POST'])
+def fillgen_change_num():
+  if request.method == 'POST':
+    result = request.form
+
+    table_listnum = []
+    baseA, baseB = 1, 11
+    for cont in range(0,10):
+      table_listnum.append(list(np.arange(baseA,baseB)))
+      baseA, baseB  = baseA + 10, baseB + 10
+
+    dez1 = []
+    test = ''
+    for a in result:
+      if 'all' in a:
+        test = 'all'
+        break
+
+      elif 'mega' in a:
+        test = 'mega'
+        break
+
+      elif 'loto' in a:
+        test = 'loto'
+        break
+
+      else:
+        test = 'someone'
+        break
+
+    if test == 'all':
+      for read in table_listnum:
+        for a in read:
+          dez.append(a)
+
+    if test == 'mega':
+      table_listnum2 = list(np.arange(1,61))
+      for a in table_listnum2:
+        dez1.append(a)
+
+    if test == 'loto':
+      table_listnum2 = list(np.arange(1,26))
+      for a in table_listnum2:
+        dez1.append(a)
+
+    if test == 'someone':
+      for a in result:
+        if a != 'linha' and a != 'all' and a != 'mega' and a != 'loto' and a != 'coluna' and a != 'coluna-del':
+          dez1.append(a)
+
+    #----
+    qt_col = int(result['coluna'])
+    qt_col_del = result['coluna-del']
+    dez2 = ''
+    extra_dez = 0
+     #----
+
+    list_cont = np.arange(1, 101)
+
+    read_table = CalcCode.generation_change_dez(dez1, dez2, extra_dez, qt_col_del, qt_col, qt_lin)
+    title_read = read_table[1]
+    read = read_table[0]
+
+  return render_template('list-read-change-dez.html', read=read, title_read=title_read, table_listnum=table_listnum, list_cont=list_cont)
+
+
+#-----
 @app.route('/handleUpload', methods=['POST'])
 def handleFileUpload():
     if 'photo' in request.files:

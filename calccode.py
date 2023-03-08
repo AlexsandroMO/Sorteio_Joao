@@ -213,3 +213,55 @@ def gera_game():
     df_base.to_excel('static/media/JOGO_GERADO.xlsx', sheet_name='Jogos Gerados')
 
     return 'feito!'
+
+
+#------
+def generation_change_dez(qt_lin, dez1, dez2, extra_dez):
+
+    print('>>>>>>>>>>>>>>>>>>> Aqui foi!!!!')
+
+    #----
+    join_table = []
+    for a in dez1:
+        join_table.append(a)
+
+    for a in dez2:
+        join_table.append(a)
+    
+    #----
+    list_table = []
+    zeros = np.zeros((qt_lin,), dtype=int)
+    for a in zeros:
+        list_table.append([a])
+
+    test_extra = 0
+    for a in range(0, len(list_table)):
+        test = True
+        while test == True:
+            if test_extra <= extra_dez:
+                x = int(join_table[random.randint(0,len(join_table)-1)])
+            else:
+                x = int(dez1[random.randint(0,len(dez1)-1)])
+
+            if x in list_table[a]:
+                test = True
+            else:
+                list_table[a].append(x)
+                #testa se as dezenas escolhidas já saíram
+                if x in dez2:
+                    test_extra += 1
+
+                test = False
+
+    for a in range(0, len(list_table)):
+        list_table[a].remove(0)
+
+    df = pd.DataFrame(data=list_table)
+    df.to_excel('static/media/df_prov.xlsx', sheet_name='Jogos Gerados')
+    df = pd.read_excel('static/media/df_prov.xlsx')
+    df = df.drop(columns=['Unnamed: 0'])
+
+    title_read = df.columns
+    read = [list_table, title_read]
+    
+    return read
