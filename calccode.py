@@ -217,9 +217,6 @@ def gera_game():
 
 #------
 def generation_change_dez(qt_lin, dez1, dez2, extra_dez):
-
-    print('>>>>>>>>>>>>>>>>>>> Aqui foi!!!!')
-
     #----
     join_table = []
     for a in dez1:
@@ -265,3 +262,75 @@ def generation_change_dez(qt_lin, dez1, dez2, extra_dez):
     read = [list_table, title_read]
     
     return read
+
+
+def generation_num_change(dez1, dez2, qt_col_del, qt_col, extra_dez):
+
+    df_prov = pd.read_excel('static/media/df_prov.xlsx')
+    df_prov = df_prov.drop(columns=['Unnamed: 0'])
+
+    if qt_col_del == 'S':
+        df_prov.drop(columns=[len(df_prov.columns)-1], inplace=True)
+        df_prov.to_excel('static/media/df_prov.xlsx')
+        df = pd.read_excel('static/media/df_prov.xlsx')
+        df = df.drop(columns=['Unnamed: 0'])
+
+        #----
+        list_table = []
+        for a in range(0, len(df_prov)):
+            list_read = []
+            for b in range(0, len(df_prov.columns)):
+                list_read.append(df_prov[b][a])
+            list_table.append(list_read)
+
+        title_read = df.columns
+        read = [list_table, title_read]
+        
+        return read
+
+    else:
+        list_table = []
+        for a in range(0, len(df_prov)):
+            list_read = []
+            for b in range(0, len(df_prov.columns)):
+                list_read.append(df_prov[b][a])
+            list_table.append(list_read)
+
+        #-------
+        join_table = []
+        for a in list_table:
+            for b in a:
+                join_table.append(b)
+
+        for a in dez2:
+            join_table.append(a)
+
+        #-------
+        for cont in range(0, qt_col):
+            test_extra = 0
+            for a in range(0, len(list_table)):
+                test = True
+                while test == True:
+                    if test_extra <= extra_dez:
+                        x = int(join_table[random.randint(0,len(join_table)-1)])
+                    else:
+                        x = int(dez1[random.randint(0,len(dez1)-1)])
+ 
+                    if x in list_table[a]:
+                        test = True
+                    else:
+                        list_table[a].append(x)
+                        if x in dez2:
+                            test_extra += 1
+                        test = False   
+
+        df = pd.DataFrame(data=list_table)
+        df = df.replace(100,0)
+        df.to_excel('static/media/df_prov.xlsx')
+        df = pd.read_excel('static/media/df_prov.xlsx')
+        df = df.drop(columns=['Unnamed: 0'])
+
+        title_read = df.columns
+        read = [list_table, title_read]
+        
+        return read

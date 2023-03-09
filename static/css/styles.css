@@ -152,6 +152,38 @@ height: 30px;
     color: #3476e2;
 }
 
+#example1{
+    overflow:auto; 
+}
+
+/* mobile phone */
+#example1_wrapper{
+    /* width: 200px;*/
+    height: 500px;
+    /* background-color: coral; */
+    /* overflow: visible; */
+    overflow: scroll;
+    /* border-collapse: separate; */
+}
+
+#example2_wrapper{
+    padding-top: 20px;
+}
+
+#example3_wrapper{
+    padding: 20px;
+}
+
+input{
+    text-align: center;
+}
+
+.td-alin{
+    width: 30px;
+    height: 30px;
+}
+
+
 /* Rodapé */
 footer {
     background-color: #333;

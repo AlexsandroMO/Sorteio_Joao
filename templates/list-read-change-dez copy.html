@@ -60,10 +60,41 @@
           <div id="example3_wrapper" class="card">
               <ul class="list-group">
                 <form action="/fillgen_change_num" method="post" enctype="multipart/form-data">
-      
-                    <label for="dez1"><strong>Escolha suas Dezenas </strong></label><br>
-                    <input type="text" name="dez1" value="{{dez1_read}}">
-                    <br><br>
+                  <label for="lname"><strong>Escolha suas Dezenas</strong></label>
+                  <div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <table id="example1" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
+                          <tbody>
+                            {% for cont in table_listnum %}
+                            <tr>
+                              <td class="td-alin"><input type="checkbox" id="customCheckbox1" name="{{cont.0}}"
+                                  value="{{cont.0}}"> {{cont.0}}</td>
+                              <td class="td-alin"><input type="checkbox" id="customCheckbox1" name="{{cont.1}}"
+                                  value="{{cont.1}}"> {{cont.1}}</td>
+                              <td class="td-alin"><input type="checkbox" id="customCheckbox1" name="{{cont.2}}"
+                                  value="{{cont.2}}"> {{cont.2}}</td>
+                              <td class="td-alin"><input type="checkbox" id="customCheckbox1" name="{{cont.3}}"
+                                  value="{{cont.3}}"> {{cont.3}}</td>
+                              <td class="td-alin"><input type="checkbox" id="customCheckbox1" name="{{cont.4}}"
+                                  value="{{cont.4}}"> {{cont.4}}</td>
+                              <td class="td-alin"><input type="checkbox" id="customCheckbox1" name="{{cont.5}}"
+                                  value="{{cont.5}}"> {{cont.5}}</td>
+                              <td class="td-alin"><input type="checkbox" id="customCheckbox1" name="{{cont.6}}"
+                                  value="{{cont.6}}"> {{cont.6}}</td>
+                              <td class="td-alin"><input type="checkbox" id="customCheckbox1" name="{{cont.7}}"
+                                  value="{{cont.7}}"> {{cont.7}}</td>
+                              <td class="td-alin"><input type="checkbox" id="customCheckbox1" name="{{cont.8}}"
+                                  value="{{cont.8}}"> {{cont.8}}</td>
+                              <td class="td-alin"><input type="checkbox" id="customCheckbox1" name="{{cont.9}}"
+                                  value="{{cont.9}}"> {{cont.9}}</td>
+                            </tr>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
 
                     <div class="form-group">
                       <div class="custom-control custom-switch">
@@ -82,17 +113,18 @@
 
                     <label for="coluna"><strong>Escolha a Quantidade de Colunas </strong></label><br>
                     <input type="text" name="coluna" value="{{qt_col}}">
-                    <br><br>
+                    <br>
+                    <br>
                     <label for="dez2"><strong>Escolhas suas dezenas extras </strong></label><br>
-                    <input type="text" name="dez2" value="{{dez2_read}}">
+                    <input type="text" name="dez2" value="{{dez_read}}">
                     <br><br>
                     <label for="coluna-del"><strong>Deletar Colunas </strong></label><br>
                     <select id="coluna-del" name="coluna-del">
                       <option value="N">Não</option>
                       <option value="S">Sim</option>
                     </select>
-                    <br><br>
-                  
+                    <br>
+                    <br>
                     <div>
 
                       <div>
@@ -105,12 +137,7 @@
           </div>
         </div>
       </div>
-   </section>
 
-  <section>
-    <div class="container-fluid">
-      <div class="row" >
-        <div class="col-12">
           <div class="aling-div">
             <ul class="list-group">
               <li class="list-group-item"><a href="/download" class="link_thumb">
@@ -137,6 +164,6 @@
     <!-- /.container-fluid -->
   </div>
   <!-- /.content -->
-</section>
+</div>
 
 {% endblock content %}
