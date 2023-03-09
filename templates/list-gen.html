@@ -22,8 +22,7 @@
                     <div>
                       <div class="row">
                         <div class="col-sm-6">
-                          <table id="example1" class="table table-bordered" role="grid"
-                            aria-describedby="example2_info">
+                          <table class="table table-bordered" role="grid" aria-describedby="example2_info">
                             <tbody>
                               {% for cont in table_listnum %}
                               <tr>
@@ -61,12 +60,6 @@
                     </div>
                     <label for="linha"><strong>Escolha a Quantidade de Linhas </strong></label><br>
                     <input type="text" name="numero-linha">
-                    <!-- <select id="linha" name="linha">
-                      <option value="numero-linha">-</option>
-                      {% for read in list_cont %}
-                      <option value="{{read}}">{{read}}</option>
-                      {% endfor %}
-                    </select> -->
                     <br><br>
                     <div>
                       <input type="submit" value="Gerar Jogos" id="alinha-button">
@@ -75,7 +68,6 @@
                   <ul>
               </div>
             </div>
-
           </div>
 
           <div class="aling-back" id="back-i">
@@ -93,6 +85,5 @@
   <!-- /.content -->
 </div>
 
-</div>
 
 {% endblock content %}

@@ -73,7 +73,7 @@ def fillgen():
       table_listnum.append(list(np.arange(baseA,baseB)))
       baseA, baseB  = baseA + 10, baseB + 10
 
-    dez = []
+    dez1 = []
     test = ''
     for a in result:
       if 'all' in a:
@@ -95,29 +95,29 @@ def fillgen():
     if test == 'all':
       for read in table_listnum:
         for a in read:
-          dez.append(a)
+          dez1.append(a)
 
     if test == 'mega':
       table_listnum2 = list(np.arange(1,61))
       for a in table_listnum2:
-        dez.append(a)
+        dez1.append(a)
 
     if test == 'loto':
       table_listnum2 = list(np.arange(1,26))
       for a in table_listnum2:
-        dez.append(a)
+        dez1.append(a)
 
     if test == 'someone':
       for a in result:
         if a != 'linha' and a != 'all' and a != 'mega' and a != 'loto':
-          dez.append(a)
+          dez1.append(a)
       
     #qt_lin = int(result['linha'])
     qt_lin = int(result['numero-linha'])
 
     list_cont = np.arange(1, 101)
  
-    read_table = CalcCode.generation_num_col(qt_lin, dez)
+    read_table = CalcCode.generation_num_col(qt_lin, dez1)
     title_read = read_table[1]
     read = read_table[0]
     
@@ -135,7 +135,7 @@ def fillgen_num():
       table_listnum.append(list(np.arange(baseA,baseB)))
       baseA, baseB  = baseA + 10, baseB + 10
 
-    dez = []
+    dez1 = []
     test = ''
     for a in result:
       if 'all' in a:
@@ -157,29 +157,29 @@ def fillgen_num():
     if test == 'all':
       for read in table_listnum:
         for a in read:
-          dez.append(a)
+          dez1.append(a)
 
     if test == 'mega':
       table_listnum2 = list(np.arange(1,61))
       for a in table_listnum2:
-        dez.append(a)
+        dez1.append(a)
 
     if test == 'loto':
       table_listnum2 = list(np.arange(1,26))
       for a in table_listnum2:
-        dez.append(a)
+        dez1.append(a)
 
     if test == 'someone':
       for a in result:
         if a != 'linha' and a != 'all' and a != 'mega' and a != 'loto' and a != 'coluna' and a != 'coluna-del':
-          dez.append(a)
+          dez1.append(a)
 
     qt_col = int(result['coluna'])
     qt_col_del = result['coluna-del']
     
     list_cont = np.arange(1, 101)
 
-    read_table = CalcCode.generation_num_colx(dez, qt_col_del, qt_col)
+    read_table = CalcCode.generation_num_colx(dez1, qt_col_del, qt_col)
     title_read = read_table[1]
     read = read_table[0]
 

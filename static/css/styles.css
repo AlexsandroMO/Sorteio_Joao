@@ -161,6 +161,10 @@ section{
     height: 20px;
 }
 
+#exemplo1{
+    padding: 20px;
+}
+
 #example1_wrapper{
     height: 500px;
     overflow: scroll;

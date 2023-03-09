@@ -6,7 +6,7 @@
   <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
-      <div class="row">
+      <div class="row" >
         <div class="col-12">
           <div class="card">
             <div class="card-header">
@@ -15,15 +15,10 @@
             <!-- /.card-header -->
             <input type="hidden" name="id_proj" value="{{proj_id}}">
             <div class="card-body">
-              <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                <div class="row">
-                  <div class="col-sm-12 col-md-6">
-                  </div>
-                  <div class="col-sm-12 col-md-6"></div>
-                </div>
+              <div class="dataTables_wrapper dt-bootstrap4">
                 <div id="example1_wrapper" class="row">
                   <div class="col-sm-12">
-                    <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid"
+                    <table class="table table-bordered table-hover dataTable dtr-inline" role="grid"
                       aria-describedby="example2_info">
                       <thead>
                         <tr role="row">
@@ -47,47 +42,53 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-sm-12 col-md-5">
+                  <div id="example2_wrapper" class="col-sm-12 col-md-5">
                     <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Generated Games
                     </div>
                   </div>
                   </ul>
                 </div>
               </div>
-              <!-- /.card-body -->
-            </div>
-          </div>
+        </div>
+      </div>
+    </section>
 
-          <div class="alinha-cols">
-            <div class="aling-div">
+    <section class="content">
+    <div class="container-fluid">
+      <div class="row" >
+        <div class="col-12">
+          <div id="example3_wrapper" class="card">
               <ul class="list-group">
                 <form action="/fillgen_num" method="post" enctype="multipart/form-data">
-                  <label for="lname"><strong>Escolha suas Dezenas</strong></label>
-                  <div>
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <table id="example1" class="table table-bordered table-hover dataTable dtr-inline" role="grid"
-                          aria-describedby="example2_info">
-                          <tbody>
-                            {% for cont in table_listnum %}
-                            <tr>
-                              <td class="td-alin"><input type="checkbox" name="{{cont.0}}" value="{{cont.0}}"> {{cont.0}}</td>
-                              <td class="td-alin"><input type="checkbox" name="{{cont.1}}" value="{{cont.1}}"> {{cont.1}}</td>
-                              <td class="td-alin"><input type="checkbox" name="{{cont.2}}" value="{{cont.2}}"> {{cont.2}}</td>
-                              <td class="td-alin"><input type="checkbox" name="{{cont.3}}" value="{{cont.3}}"> {{cont.3}}</td>
-                              <td class="td-alin"><input type="checkbox" name="{{cont.4}}" value="{{cont.4}}"> {{cont.4}}</td>
-                              <td class="td-alin"><input type="checkbox" name="{{cont.5}}" value="{{cont.5}}"> {{cont.5}}</td>
-                              <td class="td-alin"><input type="checkbox" name="{{cont.6}}" value="{{cont.6}}"> {{cont.6}}</td>
-                              <td class="td-alin"><input type="checkbox" name="{{cont.7}}" value="{{cont.7}}"> {{cont.7}}</td>
-                              <td class="td-alin"><input type="checkbox" name="{{cont.8}}" value="{{cont.8}}"> {{cont.8}}</td>
-                              <td class="td-alin"><input type="checkbox" name="{{cont.9}}" value="{{cont.9}}"> {{cont.9}}</td>
-                            </tr>
-                            {% endfor %}
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-
+                  <div class="row">
+                    <div class="col-sm-6"><table class="table table-bordered" role="grid" aria-describedby="example2_info">
+                    <tbody>
+                      {% for cont in table_listnum %}
+                      <tr>
+                        <td class="td-alin"><input type="checkbox" name="{{cont.0}}" value="{{cont.0}}"> {{cont.0}}</td>
+                        <td class="td-alin"><input type="checkbox" name="{{cont.1}}" value="{{cont.1}}"> {{cont.1}}</td>
+                        <td class="td-alin"><input type="checkbox" name="{{cont.2}}" value="{{cont.2}}"> {{cont.2}}</td>
+                        <td class="td-alin"><input type="checkbox" name="{{cont.3}}" value="{{cont.3}}"> {{cont.3}}</td>
+                        <td class="td-alin"><input type="checkbox" name="{{cont.4}}" value="{{cont.4}}"> {{cont.4}}</td>
+                        <td class="td-alin"><input type="checkbox" name="{{cont.5}}" value="{{cont.5}}"> {{cont.5}}</td>
+                        <td class="td-alin"><input type="checkbox" name="{{cont.6}}" value="{{cont.6}}"> {{cont.6}}</td>
+                        <td class="td-alin"><input type="checkbox" name="{{cont.7}}" value="{{cont.7}}"> {{cont.7}}</td>
+                        <td class="td-alin"><input type="checkbox" name="{{cont.8}}" value="{{cont.8}}"> {{cont.8}}</td>
+                        <td class="td-alin"><input type="checkbox" name="{{cont.9}}" value="{{cont.9}}"> {{cont.9}}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+          </div>
+        </div>
+     </section>
+               
+     
+     <div id="exemplo1" class="container-fluid">
+                  <div class="row" >
+                    <div class="col-12">
                     <div class="form-group">
                       <div class="custom-control custom-switch">
                         <input type="checkbox" class="custom-control-input" id="customSwitch1" name="all">
@@ -102,34 +103,31 @@
                         <label class="custom-control-label" for="customSwitch3">LotoFácil</label>
                       </div>
                     </div>
-
+ 
                     <label for="coluna"><strong>Escolha a Quantidade de Colunas </strong></label><br>
-                    <select id="colina" name="coluna">
-                      <option value="0">0</option>
-                      {% for read in list_cont %}
-                      <option value="{{read}}">{{read}}</option>
-                      {% endfor %}
-                    </select>
-                    <br>
-                    <br>
+                    <input type="text" name="coluna" value="{{qt_col}}">
+                    <br><br>
                     <label for="coluna-del"><strong>Deletar Colunas </strong></label><br>
                     <select id="coluna-del" name="coluna-del">
                       <option value="N">Não</option>
                       <option value="S">Sim</option>
                     </select>
-                    <br>
-                    <br>
+                    <br><br>
                     <div>
-
                       <div>
                         <input type="submit" value="Gerar Jogos" id="alinha-button">
                       </div>
-
                 </form>
                 <ul>
             </div>
           </div>
+        </div>
+      </div>
 
+  <section>
+    <div class="container-fluid">
+      <div class="row" >
+        <div class="col-12">
           <div class="aling-div">
             <ul class="list-group">
               <li class="list-group-item"><a href="/download" class="link_thumb">
@@ -153,9 +151,8 @@
       </div>
       <!-- /.row -->
     </div>
-    <!-- /.container-fluid -->
-  </section>
+
   <!-- /.content -->
-</div>
+</section>
 
 {% endblock content %}
