@@ -29,7 +29,7 @@ def read_df():
     title_read = df_base.columns
 
     list_table =[]
-    for a in range(0, len(df_base)):
+    for a in range(len(df_base)):
         list_read = []
         for b in range(1, len(df_base.columns)):
             list_read.append(df_base[b][a])
@@ -126,10 +126,10 @@ def generation_num_col(qt_lin, dez):
     for a in zeros:
         list_table.append([a])
 
-    for a in range(0, len(list_table)):
+    for a in range(len(list_table)):
         test = True
         while test == True:
-            x = int(dez[random.randint(0,len(dez)-1)])
+            x = int(dez[random.randint(len(dez)-1)])
             if x in list_table[a]:
                 test = True
             else:
@@ -164,7 +164,7 @@ def generation_num_colx(dez, qt_col_del, qt_col):
         list_table = []
         for a in range(0, len(df_prov)):
             list_read = []
-            for b in range(0, len(df_prov.columns)):
+            for b in range(len(df_prov.columns)):
                 list_read.append(df_prov[b][a])
             list_table.append(list_read)
 
@@ -178,15 +178,15 @@ def generation_num_colx(dez, qt_col_del, qt_col):
         list_table = []
         for a in range(0, len(df_prov)):
             list_read = []
-            for b in range(0, len(df_prov.columns)):
+            for b in range(len(df_prov.columns)):
                 list_read.append(df_prov[b][a])
             list_table.append(list_read)
 
-        for cont in range(0, qt_col):
-            for a in range(0, len(list_table)):
+        for cont in range(qt_col):
+            for a in range(len(list_table)):
                 test = True
                 while test == True:
-                    x = int(dez[random.randint(0,len(dez)-1)])
+                    x = int(dez[random.randint(len(dez)-1)])
                     if x in list_table[a]:
                         test = True
                     else:
@@ -238,7 +238,7 @@ def generation_change_dez(qt_lin, dez1, dez2, extra_dez):
             if test_extra <= extra_dez:
                 x = int(join_table[random.randint(0,len(join_table)-1)])
             else:
-                x = int(dez1[random.randint(0,len(dez1)-1)])
+                x = int(dez1[random.randint(len(dez1)-1)])
 
             if x in list_table[a]:
                 test = True
@@ -260,7 +260,7 @@ def generation_change_dez(qt_lin, dez1, dez2, extra_dez):
 
     title_read = df.columns
     read = [list_table, title_read]
-    
+   
     return read
 
 
@@ -279,7 +279,7 @@ def generation_num_change(dez1, dez2, qt_col_del, qt_col, extra_dez):
         list_table = []
         for a in range(0, len(df_prov)):
             list_read = []
-            for b in range(0, len(df_prov.columns)):
+            for b in range(len(df_prov.columns)):
                 list_read.append(df_prov[b][a])
             list_table.append(list_read)
 
@@ -290,9 +290,9 @@ def generation_num_change(dez1, dez2, qt_col_del, qt_col, extra_dez):
 
     else:
         list_table = []
-        for a in range(0, len(df_prov)):
+        for a in range(len(df_prov)):
             list_read = []
-            for b in range(0, len(df_prov.columns)):
+            for b in range(len(df_prov.columns)):
                 list_read.append(df_prov[b][a])
             list_table.append(list_read)
 
@@ -306,9 +306,9 @@ def generation_num_change(dez1, dez2, qt_col_del, qt_col, extra_dez):
             join_table.append(a)
 
         #-------
-        for cont in range(0, qt_col):
+        for cont in range(qt_col):
             test_extra = 0
-            for a in range(0, len(list_table)):
+            for a in range(len(list_table)):
                 test = True
                 while test == True:
                     if test_extra <= extra_dez:

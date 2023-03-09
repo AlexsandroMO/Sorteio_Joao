@@ -7,6 +7,10 @@ width: 30px;
 height: 30px;
 }
 
+section{
+    padding-bottom: 10px;   
+}
+
 .content-box{
     padding-left: 30%;
     padding-bottom: 10px;
@@ -152,18 +156,14 @@ height: 30px;
     color: #3476e2;
 }
 
-#example1{
-    overflow:auto; 
+#customCheckbox1{
+    width: 20px;
+    height: 20px;
 }
 
-/* mobile phone */
 #example1_wrapper{
-    /* width: 200px;*/
     height: 500px;
-    /* background-color: coral; */
-    /* overflow: visible; */
     overflow: scroll;
-    /* border-collapse: separate; */
 }
 
 #example2_wrapper{
