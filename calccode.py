@@ -350,7 +350,7 @@ def generation_change_dez_2(qt_col, col_A, qt_col_ex, qt_lin, dez, dez_extra):
 
   #-------------------------
   for cont in range(col_A):
-    test_extra = 0
+    #test_extra = 0
     for a in range(len(list_table)):
       test = True
       while test == True:
@@ -364,7 +364,7 @@ def generation_change_dez_2(qt_col, col_A, qt_col_ex, qt_lin, dez, dez_extra):
 
   #------------------------
   for cont in range(qt_col_ex):
-    test_extra = 0
+    #test_extra = 0
     for a in range(len(list_table2)):
       test = True
       while test == True:
@@ -386,7 +386,7 @@ def generation_change_dez_2(qt_col, col_A, qt_col_ex, qt_lin, dez, dez_extra):
   df = pd.DataFrame(data=list_table,columns=np.arange(0, len(list_table[0])))
   df2 = pd.DataFrame(data=list_table2,columns=np.arange(0, len(list_table2[0])))
 
-  #-------
+  #------- renumera colnas
   cont = 200
   for a in df.columns:
     df = df.rename(columns={a: cont})
@@ -397,7 +397,7 @@ def generation_change_dez_2(qt_col, col_A, qt_col_ex, qt_lin, dez, dez_extra):
     df2 = df2.rename(columns={a: cont})
     cont += 1
 
-  #--------
+  #-------- embaralha colunas
   df_merged = pd.concat([df, df2], axis=1)
 
   columns = list(df_merged.columns)
@@ -405,15 +405,24 @@ def generation_change_dez_2(qt_col, col_A, qt_col_ex, qt_lin, dez, dez_extra):
   df_merged = df_merged[columns]
   df_merged.columns
 
+  #-------- renumera colnas
   cont = 500
   for a in df_merged.columns:
     df_merged = df_merged.rename(columns={a: cont})
     cont += 1
-
+  #-------- renumera colnas ordem
   cont = 0
   for a in df_merged.columns:
     df_merged = df_merged.rename(columns={a: cont})
     cont += 1
+
+#   print('-------------- aleatóriar linha \n')
+#   for a in df_merged:
+#     x = random.shuffle(df_merged[a])
+#     print(x)
+    # df_merged[a] = []
+    # for b in x:
+    #    df_merged[a].append(b)
 
   df = pd.DataFrame(data=df_merged)
   df.to_excel('static/media/df_prov.xlsx', sheet_name='Jogos Gerados')
@@ -421,7 +430,7 @@ def generation_change_dez_2(qt_col, col_A, qt_col_ex, qt_lin, dez, dez_extra):
   df = df.drop(columns=['Unnamed: 0'])
  
   title_read = df.columns
-  read = [df_merged, title_read]
+  read = [title_read, df_merged]
 
   return read
 

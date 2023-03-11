@@ -15,54 +15,51 @@
 
             <div class="alinha-cols">
               <div class="aling-div">
-                <ul class="list-group">
-                  <form action="/fillgen_change" method="post" enctype="multipart/form-data">
-                    <label for="lname"><strong>Dezenas Principais</strong></label>
-
-                    <div>
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <table class="table table-bordered" role="grid" aria-describedby="example2_info">
-                            <tbody>
-                              {% for cont in table_listnum %}
-                              <tr>
-                                <td class="td-alin"><input type="checkbox" name="{{cont.0}}" value="{{cont.0}}"> {{cont.0}}</td>
-                                <td class="td-alin"><input type="checkbox" name="{{cont.1}}" value="{{cont.1}}"> {{cont.1}}</td>
-                                <td class="td-alin"><input type="checkbox" name="{{cont.2}}" value="{{cont.2}}"> {{cont.2}}</td>
-                                <td class="td-alin"><input type="checkbox" name="{{cont.3}}" value="{{cont.3}}"> {{cont.3}}</td>
-                                <td class="td-alin"><input type="checkbox" name="{{cont.4}}" value="{{cont.4}}"> {{cont.4}}</td>
-                                <td class="td-alin"><input type="checkbox" name="{{cont.5}}" value="{{cont.5}}"> {{cont.5}}</td>
-                                <td class="td-alin"><input type="checkbox" name="{{cont.6}}" value="{{cont.6}}"> {{cont.6}}</td>
-                                <td class="td-alin"><input type="checkbox" name="{{cont.7}}" value="{{cont.7}}"> {{cont.7}}</td>
-                                <td class="td-alin"><input type="checkbox" name="{{cont.8}}" value="{{cont.8}}"> {{cont.8}}</td>
-                                <td class="td-alin"><input type="checkbox" name="{{cont.9}}" value="{{cont.9}}"> {{cont.9}}</td>
-                              </tr>
-                              {% endfor %}
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-
+               
+           
+                  <form action="/fillgen_change_2" method="post" enctype="multipart/form-data">
+                    <label for="dez"><strong>Dezenas Principais</strong></label><br>
+                    <input type="text" name="dez" value="{{dez_read}}">
+                    <br><br>
+                   
                       <div class="form-group">
                         <div class="custom-control custom-switch">
-                          <input type="checkbox" class="custom-control-input" id="customSwitch1" name="all">
-                          <label class="custom-control-label" for="customSwitch1">Todas Dezanas</label>
+                          <input type="checkbox" class="custom-control-input" id="customSwitch1" name="lotom">
+                          <label class="custom-control-label" for="customSwitch1">Lotomania</label>
                         </div>
                         <div class="custom-control custom-switch">
                           <input type="checkbox" class="custom-control-input" id="customSwitch2" name="mega">
                           <label class="custom-control-label" for="customSwitch2">MegaSena</label>
                         </div>
                         <div class="custom-control custom-switch">
-                          <input type="checkbox" class="custom-control-input" id="customSwitch3" name="loto">
+                          <input type="checkbox" class="custom-control-input" id="customSwitch3" name="lotof">
                           <label class="custom-control-label" for="customSwitch3">LotoFácil</label>
                         </div>
+                        <div class="custom-control custom-switch">
+                          <input type="checkbox" class="custom-control-input" id="customSwitch4" name="milho-dupla">
+                          <label class="custom-control-label" for="customSwitch4">Milhonária/DuplaSena</label>
+                        </div>
+                        <div class="custom-control custom-switch">
+                          <input type="checkbox" class="custom-control-input" id="customSwitch5" name="quin-time">
+                          <label class="custom-control-label" for="customSwitch5">Quina/TimeMania</label>
+                        </div>
+                        <div class="custom-control custom-switch">
+                          <input type="checkbox" class="custom-control-input" id="customSwitch6" name="dia">
+                          <label class="custom-control-label" for="customSwitch6">DiaDeSorte</label>
+                        </div>
                       </div>
-                    </div>
+                   
                     <label for="linha"><strong>Quantidade de Linhas </strong></label><br>
                     <input type="text" name="numero-linha">
                     <br><br>
-                    <label for="dez2"><strong>Dezenas Extras </strong></label><br>
-                    <input type="text" name="dez2">
+                    <label for="numero-coluna-dez"><strong>Quantidade de Colunas </strong></label><br>
+                    <input type="text" name="numero-coluna-dez">
+                    <br><br>
+                    <label for="dez-extra"><strong>Dezenas Extras </strong></label><br>
+                    <input type="text" name="dez-extra">
+                    <br><br>
+                    <label for="numero-coluna-extra"><strong>Quantidade de Colunas Dezenas Extras</strong></label><br>
+                    <input type="text" name="numero-coluna-extra">
                     <br><br>
                     <div>
                       <input type="submit" value="Gerar Jogos" id="alinha-button">
