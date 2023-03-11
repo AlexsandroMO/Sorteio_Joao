@@ -334,3 +334,94 @@ def generation_num_change(dez1, dez2, qt_col_del, qt_col, extra_dez):
         read = [list_table, title_read]
         
         return read
+    
+    
+def generation_change_dez_2(qt_col, col_A, qt_col_ex, qt_lin, dez, dez_extra):
+ 
+  list_table, list_table2 = [],[]
+
+  zeros = np.zeros((qt_lin,), dtype=int)
+  for a in zeros:
+    list_table.append([a])
+
+  zeros2 = np.zeros((qt_lin,), dtype=int)
+  for a in zeros2:
+    list_table2.append([a])
+
+  #-------------------------
+  for cont in range(col_A):
+    test_extra = 0
+    for a in range(len(list_table)):
+      test = True
+      while test == True:
+        x = int(dez[random.randint(0,len(dez)-1)])
+
+        if x in list_table[a]:
+          test = True
+        else:
+          list_table[a].append(x)
+          test = False
+
+  #------------------------
+  for cont in range(qt_col_ex):
+    test_extra = 0
+    for a in range(len(list_table2)):
+      test = True
+      while test == True:
+        x = int(dez_extra[random.randint(0,len(dez_extra)-1)])
+
+        if x in list_table2[a]:
+          test = True
+        else:
+          list_table2[a].append(x)
+          test = False
+
+    
+  for a in range(len(list_table)):
+    list_table[a].remove(0)
+
+  for a in range(len(list_table2)):
+    list_table2[a].remove(0)
+
+  df = pd.DataFrame(data=list_table,columns=np.arange(0, len(list_table[0])))
+  df2 = pd.DataFrame(data=list_table2,columns=np.arange(0, len(list_table2[0])))
+
+  #-------
+  cont = 200
+  for a in df.columns:
+    df = df.rename(columns={a: cont})
+    cont += 1
+
+  cont = 300
+  for a in df2.columns:
+    df2 = df2.rename(columns={a: cont})
+    cont += 1
+
+  #--------
+  df_merged = pd.concat([df, df2], axis=1)
+
+  columns = list(df_merged.columns)
+  random.shuffle(columns)
+  df_merged = df_merged[columns]
+  df_merged.columns
+
+  cont = 500
+  for a in df_merged.columns:
+    df_merged = df_merged.rename(columns={a: cont})
+    cont += 1
+
+  cont = 0
+  for a in df_merged.columns:
+    df_merged = df_merged.rename(columns={a: cont})
+    cont += 1
+
+  df = pd.DataFrame(data=df_merged)
+  df.to_excel('static/media/df_prov.xlsx', sheet_name='Jogos Gerados')
+  df = pd.read_excel('static/media/df_prov.xlsx')
+  df = df.drop(columns=['Unnamed: 0'])
+ 
+  title_read = df.columns
+  read = [df_merged, title_read]
+
+  return read
+
