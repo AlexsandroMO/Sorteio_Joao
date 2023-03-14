@@ -336,8 +336,8 @@ def fillgen_change_num():
     qt_col = int(result['coluna'])
     qt_col_del = result['coluna-del']
    
-    dez1_read = result['dez1']
-    dez1 = dez1_read.split(';')
+    dez_A = result['dez']
+    dez1 = dez_A.split(';')
     
     dez2_read = result['dez2']
     dez2 = dez2_read.split(';')
@@ -351,7 +351,7 @@ def fillgen_change_num():
     title_read = read_table[1]
     read = read_table[0]
 
-  return render_template('list-read-change-dez.html', read=read, title_read=title_read, list_cont=list_cont, dez2_read=dez2_read, qt_col=qt_col)
+  return render_template('list-read-change-dez.html', read=read, title_read=title_read, list_cont=list_cont, dez2_read=dez2_read, dez_A=dez_A, qt_col=qt_col)
 
 
 @app.route('/list_gen_change_2')
