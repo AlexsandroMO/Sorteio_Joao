@@ -69,7 +69,7 @@ def fillgen():
 
     dez_A = result['dez']
     dez = []
-
+    
     if bool(dez_A):
       dez = dez_A.split(';')
 
@@ -142,7 +142,7 @@ def fillgen():
     title_read = read_table[1]
     read = read_table[0]
     
-  return render_template('list-read-num-col.html', read=read, title_read=title_read, list_cont=list_cont)
+  return render_template('list-read-num-col.html', read=read, title_read=title_read, list_cont=list_cont, dez_A=dez_A)
 
 
 @app.route('/fillgen_num', methods=['POST'])
@@ -223,7 +223,7 @@ def fillgen_num():
     title_read = read_table[1]
     read = read_table[0]
 
-  return render_template('list-read-num-col.html', read=read, title_read=title_read, list_cont=list_cont)
+  return render_template('list-read-num-col.html', read=read, title_read=title_read, list_cont=list_cont, dez_A=dez_A)
 
 
 
@@ -280,11 +280,6 @@ def fillgen_change():
           test = 'dia'
           break
 
-        # else:
-        #   test = 'dia'
-        #   break
-
-
       if test == 'lotom':
         table_listnum2 = list(np.arange(1,101))
         for a in table_listnum2:
@@ -329,19 +324,13 @@ def fillgen_change():
     title_read = read_table[1]
     read = read_table[0]
     
-  return render_template('list-read-change-dez.html', read=read, title_read=title_read, list_cont=list_cont,dez2_read=dez2_read)
+  return render_template('list-read-change-dez.html', read=read, title_read=title_read, list_cont=list_cont,dez2_read=dez2_read,dez_A=dez_A)
 
 
 @app.route('/fillgen_change_num', methods=['POST'])
 def fillgen_change_num():
   if request.method == 'POST':
     result = request.form
-
-    table_listnum = []
-    baseA, baseB = 1, 11
-    for cont in range(0,10):
-      table_listnum.append(list(np.arange(baseA,baseB)))
-      baseA, baseB  = baseA + 10, baseB + 10
 
     #----
     qt_col = int(result['coluna'])
@@ -362,7 +351,7 @@ def fillgen_change_num():
     title_read = read_table[1]
     read = read_table[0]
 
-  return render_template('list-read-change-dez.html', read=read, title_read=title_read, table_listnum=table_listnum, list_cont=list_cont, dez2_read=dez2_read, dez1_read=dez1_read, qt_col=qt_col)
+  return render_template('list-read-change-dez.html', read=read, title_read=title_read, list_cont=list_cont, dez2_read=dez2_read, qt_col=qt_col)
 
 
 @app.route('/list_gen_change_2')
