@@ -150,7 +150,7 @@ def generation_num_col(qt_lin, dez):
     return read
 
 
-def generation_num_colx(dez1, qt_col_del, qt_col):
+def generation_num_colx(dez, qt_col_del, qt_col):
 
     df_prov = pd.read_excel('static/media/df_prov.xlsx')
     df_prov = df_prov.drop(columns=['Unnamed: 0'])
@@ -186,7 +186,7 @@ def generation_num_colx(dez1, qt_col_del, qt_col):
             for a in range(len(list_table)):
                 test = True
                 while test == True:
-                    x = int(dez1[random.randint(0,len(dez1)-1)])
+                    x = int(dez[random.randint(0,len(dez)-1)])
                     if x in list_table[a]:
                         test = True
                     else:
@@ -216,10 +216,10 @@ def gera_game():
 
 
 #------
-def generation_change_dez(qt_lin, dez1, dez2, extra_dez):
+def generation_change_dez(qt_lin, dez, dez2, extra_dez):
     #----
     join_table = []
-    for a in dez1:
+    for a in dez:
         join_table.append(a)
 
     for a in dez2:
@@ -238,7 +238,7 @@ def generation_change_dez(qt_lin, dez1, dez2, extra_dez):
             if test_extra <= extra_dez:
                 x = int(join_table[random.randint(0,len(join_table)-1)])
             else:
-                x = int(dez1[random.randint(0,len(dez1)-1)])
+                x = int(dez[random.randint(0,len(dez)-1)])
 
             if x in list_table[a]:
                 test = True
