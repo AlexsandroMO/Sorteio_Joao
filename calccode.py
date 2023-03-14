@@ -150,59 +150,39 @@ def generation_num_col(qt_lin, dez):
     return read
 
 
-def generation_num_colx(dez, qt_col_del, qt_col):
+def generation_num_colx(dez, qt_col):
 
     df_prov = pd.read_excel('static/media/df_prov.xlsx')
     df_prov = df_prov.drop(columns=['Unnamed: 0'])
 
-    if qt_col_del == 'S':
-        df_prov.drop(columns=[len(df_prov.columns)-1], inplace=True)
-        df_prov.to_excel('static/media/df_prov.xlsx')
-        df = pd.read_excel('static/media/df_prov.xlsx')
-        df = df.drop(columns=['Unnamed: 0'])
+    list_table = []
+    for a in range(0, len(df_prov)):
+        list_read = []
+        for b in range(len(df_prov.columns)):
+            list_read.append(df_prov[b][a])
+        list_table.append(list_read)
 
-        list_table = []
-        for a in range(0, len(df_prov)):
-            list_read = []
-            for b in range(len(df_prov.columns)):
-                list_read.append(df_prov[b][a])
-            list_table.append(list_read)
+    for cont in range(qt_col):
+        for a in range(len(list_table)):
+            test = True
+            while test == True:
+                x = int(dez[random.randint(0,len(dez)-1)])
+                if x in list_table[a]:
+                    test = True
+                else:
+                    list_table[a].append(x)
+                    test = False   
 
-        title_read = df.columns
-        read = [list_table, title_read]
-        
-        return read
+    df = pd.DataFrame(data=list_table)
+    df = df.replace(100,0)
+    df.to_excel('static/media/df_prov.xlsx')
+    df = pd.read_excel('static/media/df_prov.xlsx')
+    df = df.drop(columns=['Unnamed: 0'])
 
-    else:
-
-        list_table = []
-        for a in range(0, len(df_prov)):
-            list_read = []
-            for b in range(len(df_prov.columns)):
-                list_read.append(df_prov[b][a])
-            list_table.append(list_read)
-
-        for cont in range(qt_col):
-            for a in range(len(list_table)):
-                test = True
-                while test == True:
-                    x = int(dez[random.randint(0,len(dez)-1)])
-                    if x in list_table[a]:
-                        test = True
-                    else:
-                        list_table[a].append(x)
-                        test = False   
-
-        df = pd.DataFrame(data=list_table)
-        df = df.replace(100,0)
-        df.to_excel('static/media/df_prov.xlsx')
-        df = pd.read_excel('static/media/df_prov.xlsx')
-        df = df.drop(columns=['Unnamed: 0'])
-
-        title_read = df.columns
-        read = [list_table, title_read]
-        
-        return read
+    title_read = df.columns
+    read = [list_table, title_read]
+    
+    return read
 
 
 def gera_game():
@@ -217,6 +197,8 @@ def gera_game():
 
 #------
 def generation_change_dez(qt_lin, dez, dez2, extra_dez):
+
+    print('entrou!!!!!!')
     #----
     join_table = []
     for a in dez:
@@ -264,79 +246,59 @@ def generation_change_dez(qt_lin, dez, dez2, extra_dez):
     return read
 
 
-def generation_num_change(dez1, dez2, qt_col_del, qt_col, extra_dez):
+def generation_num_change(dez1, dez2, qt_col, extra_dez):
 
     df_prov = pd.read_excel('static/media/df_prov.xlsx')
     df_prov = df_prov.drop(columns=['Unnamed: 0'])
 
-    if qt_col_del == 'S':
-        df_prov.drop(columns=[len(df_prov.columns)-1], inplace=True)
-        df_prov.to_excel('static/media/df_prov.xlsx')
-        df = pd.read_excel('static/media/df_prov.xlsx')
-        df = df.drop(columns=['Unnamed: 0'])
+    list_table = []
+    for a in range(len(df_prov)):
+        list_read = []
+        for b in range(len(df_prov.columns)):
+            list_read.append(df_prov[b][a])
+        list_table.append(list_read)
 
-        #----
-        list_table = []
-        for a in range(0, len(df_prov)):
-            list_read = []
-            for b in range(len(df_prov.columns)):
-                list_read.append(df_prov[b][a])
-            list_table.append(list_read)
+    #-------
+    join_table = []
+    for a in list_table:
+        for b in a:
+            join_table.append(b)
 
-        title_read = df.columns
-        read = [list_table, title_read]
-        
-        return read
+    for a in dez2:
+        join_table.append(a)
 
-    else:
-        list_table = []
-        for a in range(len(df_prov)):
-            list_read = []
-            for b in range(len(df_prov.columns)):
-                list_read.append(df_prov[b][a])
-            list_table.append(list_read)
+    #-------
+    for cont in range(qt_col):
+        test_extra = 0
+        for a in range(len(list_table)):
+            test = True
+            while test == True:
+                if test_extra <= extra_dez:
+                    x = int(join_table[random.randint(0,len(join_table)-1)])
+                else:
+                    x = int(dez1[random.randint(0,len(dez1)-1)])
 
-        #-------
-        join_table = []
-        for a in list_table:
-            for b in a:
-                join_table.append(b)
+                if x in list_table[a]:
+                    test = True
+                else:
+                    list_table[a].append(x)
+                    if x in dez2:
+                        test_extra += 1
+                    test = False   
 
-        for a in dez2:
-            join_table.append(a)
+    df = pd.DataFrame(data=list_table)
+    df = df.replace(100,0)
+    df.to_excel('static/media/df_prov.xlsx')
+    df = pd.read_excel('static/media/df_prov.xlsx')
+    df = df.drop(columns=['Unnamed: 0'])
 
-        #-------
-        for cont in range(qt_col):
-            test_extra = 0
-            for a in range(len(list_table)):
-                test = True
-                while test == True:
-                    if test_extra <= extra_dez:
-                        x = int(join_table[random.randint(0,len(join_table)-1)])
-                    else:
-                        x = int(dez1[random.randint(0,len(dez1)-1)])
- 
-                    if x in list_table[a]:
-                        test = True
-                    else:
-                        list_table[a].append(x)
-                        if x in dez2:
-                            test_extra += 1
-                        test = False   
-
-        df = pd.DataFrame(data=list_table)
-        df = df.replace(100,0)
-        df.to_excel('static/media/df_prov.xlsx')
-        df = pd.read_excel('static/media/df_prov.xlsx')
-        df = df.drop(columns=['Unnamed: 0'])
-
-        title_read = df.columns
-        read = [list_table, title_read]
-        
-        return read
+    title_read = df.columns
+    read = [list_table, title_read]
+    
+    return read
     
     
-def generation_change_dez_2(qt_col, col_A, qt_col_ex, qt_lin, dez, dez_extra):
+def generation_change_dez_2(col_A, qt_col_ex, qt_lin, dez, dez_extra):
  
   list_table, list_table2 = [],[]
 
@@ -416,14 +378,6 @@ def generation_change_dez_2(qt_col, col_A, qt_col_ex, qt_lin, dez, dez_extra):
     df_merged = df_merged.rename(columns={a: cont})
     cont += 1
 
-#   print('-------------- aleatóriar linha \n')
-#   for a in df_merged:
-#     x = random.shuffle(df_merged[a])
-#     print(x)
-    # df_merged[a] = []
-    # for b in x:
-    #    df_merged[a].append(b)
-
   df = pd.DataFrame(data=df_merged)
   df.to_excel('static/media/df_prov.xlsx', sheet_name='Jogos Gerados')
   df = pd.read_excel('static/media/df_prov.xlsx')
@@ -434,3 +388,44 @@ def generation_change_dez_2(qt_col, col_A, qt_col_ex, qt_lin, dez, dez_extra):
 
   return read
 
+
+
+def del_columns(del_col):
+
+    df_prov = pd.read_excel('static/media/df_prov.xlsx')
+    df_prov = df_prov.drop(columns=['Unnamed: 0'])
+
+    del_x = del_col.split(';')
+    dell = []
+
+    for a in del_x:
+       dell.append(int(a))
+       
+    df_prov = df_prov.drop(dell, axis=1)
+
+    #-------- renumera colnas
+    cont = 500
+    for a in df_prov.columns:
+        df_prov = df_prov.rename(columns={a: cont})
+        cont += 1
+    #-------- renumera colnas ordem
+    cont = 0
+    for a in df_prov.columns:
+        df_prov = df_prov.rename(columns={a: cont})
+        cont += 1
+
+    df_prov.to_excel('static/media/df_prov.xlsx')
+    df = pd.read_excel('static/media/df_prov.xlsx')
+    df = df.drop(columns=['Unnamed: 0'])
+
+    list_table = []
+    for a in range(len(df_prov)):
+        list_read = []
+        for b in range(len(df_prov.columns)):
+            list_read.append(df_prov[b][a])
+        list_table.append(list_read)
+
+    title_read = df.columns
+    read = [list_table, title_read]
+    
+    return read
