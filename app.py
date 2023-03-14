@@ -67,61 +67,92 @@ def fillgen():
   if request.method == 'POST':
     result = request.form
 
-    table_listnum = []
-    baseA, baseB = 1, 11
-    for cont in range(0,10):
-      table_listnum.append(list(np.arange(baseA,baseB)))
-      baseA, baseB  = baseA + 10, baseB + 10
+    # table_listnum = []
+    # baseA, baseB = 1, 11
+    # for cont in range(0,10):
+    #   table_listnum.append(list(np.arange(baseA,baseB)))
+    #   baseA, baseB  = baseA + 10, baseB + 10
 
-    dez1 = []
-    test = ''
-    for a in result:
-      if 'all' in a:
-        test = 'all'
-        break
+    dez_A = result['dez']
+    dez = []
 
-      elif 'mega' in a:
-        test = 'mega'
-        break
+    if bool(dez_A):
+      dez = dez_A.split(';')
 
-      elif 'loto' in a:
-        test = 'loto'
-        break
-
-      else:
-        test = 'someone'
-        break
-
-    if test == 'all':
-      for read in table_listnum:
-        for a in read:
-          dez1.append(a)
-
-    if test == 'mega':
-      table_listnum2 = list(np.arange(1,61))
-      for a in table_listnum2:
-        dez1.append(a)
-
-    if test == 'loto':
-      table_listnum2 = list(np.arange(1,26))
-      for a in table_listnum2:
-        dez1.append(a)
-
-    if test == 'someone':
+    else:
+      test = ''
       for a in result:
-        if a != 'linha' and a != 'all' and a != 'mega' and a != 'loto':
-          dez1.append(a)
+        if 'lotom' in a:
+          test = 'lotom'
+          break
+
+        elif 'mega' in a:
+          test = 'mega'
+          break
+
+        elif 'loto' in a:
+          test = 'lotof'
+          break
+
+        elif 'milho-dupla' in a:
+          test = 'milho-dupla'
+          break
+
+        elif 'quin-time' in a:
+          test = 'quin-time'
+          break
+
+        elif 'dia' in a:
+          test = 'dia'
+          break
+
+        # else:
+        #   test = 'dia'
+        #   break
+
+
+      if test == 'lotom':
+        table_listnum2 = list(np.arange(1,101))
+        for a in table_listnum2:
+          dez.append(a)
+
+      if test == 'mega':
+        table_listnum2 = list(np.arange(1,61))
+        for a in table_listnum2:
+          dez.append(a)
+
+      if test == 'lotof':
+        table_listnum2 = list(np.arange(1,26))
+        for a in table_listnum2:
+          dez.append(a)
+
+      if test == 'milho-dupla':
+        table_listnum2 = list(np.arange(1,51))
+        for a in table_listnum2:
+          dez.append(a)
+
+      if test == 'quin-time':
+        table_listnum2 = list(np.arange(1,81))
+        for a in table_listnum2:
+          dez.append(a)
+
+      if test == 'dia':
+        table_listnum2 = list(np.arange(1,32))
+        for a in table_listnum2:
+          dez.append(a)
       
-    #qt_lin = int(result['linha'])
     qt_lin = int(result['numero-linha'])
 
     list_cont = np.arange(1, 101)
+
+    print('--------------- ')
+    print(dez)
  
-    read_table = CalcCode.generation_num_col(qt_lin, dez1)
+    read_table = CalcCode.generation_num_col(qt_lin, dez)
     title_read = read_table[1]
     read = read_table[0]
     
-  return render_template('list-read-num-col.html', read=read, title_read=title_read, table_listnum=table_listnum, list_cont=list_cont)
+  return render_template('list-read-num-col.html', read=read, title_read=title_read, list_cont=list_cont)
 
 
 @app.route('/fillgen_num', methods=['POST'])

@@ -119,7 +119,7 @@ def read_df():
 #     return read
 
 
-def generation_num_col(qt_lin, dez1):
+def generation_num_col(qt_lin, dez):
 
     list_table = []
     zeros = np.zeros((qt_lin,), dtype=int)
@@ -129,7 +129,7 @@ def generation_num_col(qt_lin, dez1):
     for a in range(len(list_table)):
         test = True
         while test == True:
-            x = int(dez1[random.randint(0, len(dez1)-1)])
+            x = int(dez[random.randint(0, len(dez)-1)])
             if x in list_table[a]:
                 test = True
             else:
