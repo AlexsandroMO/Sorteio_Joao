@@ -401,6 +401,7 @@ def del_columns(del_col):
     for a in del_x:
        dell.append(int(a))
        
+    print(dell)
     df_prov = df_prov.drop(dell, axis=1)
 
     #-------- renumera colnas
