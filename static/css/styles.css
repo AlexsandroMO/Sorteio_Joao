@@ -231,3 +231,8 @@ footer p {
   [data-tooltip]:hover:after {
     display: block;
   }
+
+
+  #read_check {
+    display: none;
+  }

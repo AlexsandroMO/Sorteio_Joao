@@ -66,6 +66,8 @@
                     <input type="text" name="dez" value="{{dez_A}}">
                     <br><br>
 
+                    <div id="read_check">{{readCheck}}</div>
+
                     <div class="form-group">
                       <div class="custom-control custom-switch">
                         <input type="checkbox" class="custom-control-input" id="customSwitch1" name="lotom">
@@ -73,7 +75,7 @@
                       </div>
                       <div class="custom-control custom-switch">
                         <input type="checkbox" class="custom-control-input" id="customSwitch2" name="mega">
-                        <label class="custom-control-label" for="customSwitch2"><span data-tooltip="60 Dezenas">MegaSen</span></label>
+                        <label class="custom-control-label" for="customSwitch2"><span data-tooltip="60 Dezenas">MegaSena</span></label>
                       </div>
                       <div class="custom-control custom-switch">
                         <input type="checkbox" class="custom-control-input" id="customSwitch3" name="lotof">
@@ -97,17 +99,17 @@
                     <input type="text" name="coluna" value="{{qt_col}}">
                     <br><br>
                     <label for="coluna-del"><strong>Deletar Colunas </strong></label><br>
-                    <select id="coluna-del" name="coluna-del">
+                    <select id="options" name="coluna-del">
                       <option value="N">Não</option>
                       <option value="S">Sim</option>
                     </select>
-                    <br><br>
-                    <label for="del"><strong>QT Colunas a Deletar</strong></label><br>
+                    <br>
+                    <div id="ride-div" style="display:none">
+                    <label for="del"><strong>Colunas a Deletar</strong></label><br>
                     <input type="text" name="del">
+                    </div>
                     <br><br>
-                  
                     <div>
-
                       <div>
                         <input type="submit" value="Gerar Jogos" id="alinha-button">
                       </div>
@@ -151,5 +153,6 @@
   </div>
   <!-- /.content -->
 </section>
+
 
 {% endblock content %}
